@@ -116,7 +116,7 @@ export default class AppClass extends React.Component {
   onChange = (evt) => {
     const { value } = evt.target
     this.setState({
-      ...this.state, email: value
+      email: value
   })
     // You will need this to update the value of the input.
   }
@@ -137,7 +137,9 @@ export default class AppClass extends React.Component {
       })
     })
     .finally(
-      this.reset()
+      this.setState({
+        email: ""
+      }),
     )
     // Use a POST request to send a payload to the server.
   }
@@ -153,8 +155,8 @@ export default class AppClass extends React.Component {
         <div id="grid">
           {
             [0, 1, 2, 3, 4, 5, 6, 7, 8].map(idx => (
-              <div key={idx} className={`square${idx === 4 ? ' active' : ''}`}>
-                {idx === 4 ? 'B' : null}
+              <div key={idx} className={`square${idx === this.state.index ? ' active' : ''}`}>
+                {idx === this.state.index ? 'B' : null}
               </div>
             ))
           }
@@ -170,7 +172,7 @@ export default class AppClass extends React.Component {
           <button onClick={this.reset} id="reset">reset</button>
         </div>
         <form onSubmit={this.onSubmit}>
-          <input onChange={this.onChange} id="email" type="email" placeholder="type email"></input>
+          <input onChange={this.onChange} value={this.state.email} id="email" type="email" placeholder="type email"></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>
