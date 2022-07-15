@@ -125,13 +125,11 @@ export default class AppClass extends React.Component {
     evt.preventDefault()
     axios.post("http://localhost:9000/api/result", { x: this.getXY().x, y: this.getXY().y, steps: this.state.steps, email: this.state.email })
     .then(res => {
-      console.log(res)
       this.setState({
         message: res.data.message
       })
     })
     .catch(err => {
-        console.log(err.response.data.message)
       this.setState({
         message: err.response.data.message
       })
@@ -172,7 +170,7 @@ export default class AppClass extends React.Component {
           <button onClick={this.reset} id="reset">reset</button>
         </div>
         <form onSubmit={this.onSubmit}>
-          <input onChange={this.onChange} value={this.state.email} id="email" type="email" placeholder="type email"></input>
+          <input onChange={this.onChange} value={this.state.email} id="email" type="email" data-testid="email-input" placeholder="type email"></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>

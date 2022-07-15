@@ -101,11 +101,9 @@ export default function AppFunctional(props) {
     evt.preventDefault()
     axios.post("http://localhost:9000/api/result", { x: getXY().x, y: getXY().y, steps: steps, email: email })
     .then(res => {
-      console.log(res)
       setMessage(res.data.message)
     })
     .catch(err => {
-        console.log(err.response.data.message)
         setMessage(err.response.data.message)
     })
     .finally(
